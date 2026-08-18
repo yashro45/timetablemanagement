@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Timetable Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Timetable Management System</h1>
+            <p>College Timetable Management</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Add Timetable -->
+        <section class="card">
+
+            <h2>Add Timetable</h2>
+
+            <form id="timetableForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Day</label>
+
+                        <select id="day" required>
+                            <option value="">Select Day</option>
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Subject</label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            placeholder="Example: DBMS"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Teacher</label>
+
+                        <input
+                            type="text"
+                            id="teacher"
+                            placeholder="Example: Dr. Sharma"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Room</label>
+
+                        <input
+                            type="text"
+                            id="room"
+                            placeholder="Example: Lab 301"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start Time</label>
+
+                        <input
+                            type="time"
+                            id="startTime"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>End Time</label>
+
+                        <input
+                            type="time"
+                            id="endTime"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <button type="submit">
+                    Add to Timetable
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
+
+
+        <!-- Timetable -->
+        <section class="card">
+
+            <div class="table-header">
+
+                <div>
+                    <h2>College Timetable</h2>
+                    <p>Data loaded from database</p>
+                </div>
+
+                <select id="filterDay">
+
+                    <option value="All">All Days</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Day</th>
+                            <th>Subject</th>
+                            <th>Teacher</th>
+                            <th>Room</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="timetableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Timetable Management System | College Mini Project</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
