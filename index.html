@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Timetable Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="container nav-container">
+
+        <div class="brand">
+            <div class="brand-icon">📅</div>
+
+            <div>
+                <h1>Timetable Manager</h1>
+                <p>College Timetable Management System</p>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-btn active" id="managePageBtn">
+                Manage
+            </button>
+
+            <button class="nav-btn" id="viewPageBtn">
+                Timetable View
+            </button>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- ========================= -->
+    <!-- MANAGEMENT PAGE -->
+    <!-- ========================= -->
+
+    <section id="managePage">
+
+        <div class="page-heading">
+
+            <div>
+                <span class="eyebrow">ADMIN PANEL</span>
+
+                <h2>Manage Timetable</h2>
+
+                <p>
+                    Add, edit and manage your college classes.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+
+                <div>
+                    <span>Total Classes</span>
+                    <strong id="totalClasses">0</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">🧪</div>
+
+                <div>
+                    <span>Lab Classes</span>
+                    <strong id="labClasses">0</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">🎓</div>
+
+                <div>
+                    <span>Theory Classes</span>
+                    <strong id="theoryClasses">0</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">👨‍🏫</div>
+
+                <div>
+                    <span>Teachers</span>
+                    <strong id="teacherCount">0</strong>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ADD / EDIT FORM -->
+
+        <section class="card form-card">
+
+            <div class="section-title">
+
+                <div>
+                    <span class="eyebrow">TIMETABLE ENTRY</span>
+
+                    <h2 id="formTitle">
+                        Add New Class
+                    </h2>
+                </div>
+
+                <span class="status-pill" id="editingStatus">
+                    New Entry
+                </span>
+
+            </div>
+
+
+            <form id="timetableForm">
+
+                <input type="hidden" id="editingId">
+
+
+                <div class="form-grid">
+
+                    <!-- DAY -->
+
+                    <div class="form-group">
+
+                        <label for="day">
+                            Day
+                        </label>
+
+                        <select id="day" required>
+
+                            <option value="">
+                                Select Day
+                            </option>
+
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SUBJECT -->
+
+                    <div class="form-group">
+
+                        <label for="subject">
+                            Subject
+                            <span class="limit-text">
+                                Max 9 words
+                            </span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            placeholder="Example: Database Management Systems"
+                            maxlength="120"
+                            required
+                        >
+
+                        <small id="subjectCounter">
+                            0 / 9 words
+                        </small>
+
+                    </div>
+
+
+                    <!-- TEACHER -->
+
+                    <div class="form-group">
+
+                        <label for="teacher">
+                            Teacher Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacher"
+                            placeholder="Example: Rahul Kumar Sharma"
+                            required
+                        >
+
+                        <small>
+                            Enter full name whenever possible.
+                        </small>
+
+                    </div>
+
+
+                    <!-- ROOM -->
+
+                    <div class="form-group">
+
+                        <label for="room">
+                            Room
+                        </label>
+
+                        <input
+                            type="text"
+                            id="room"
+                            placeholder="Example: Lab 301"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- START -->
+
+                    <div class="form-group">
+
+                        <label for="startTime">
+                            Start Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="startTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- END -->
+
+                    <div class="form-group">
+
+                        <label for="endTime">
+                            End Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="endTime"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLASS TYPE -->
+
+                <div class="class-type-section">
+
+                    <label>
+                        Class Type
+                    </label>
+
+                    <div class="type-buttons">
+
+                        <button
+                            type="button"
+                            class="type-btn active theory-option"
+                            data-type="Theory"
+                        >
+                            🎓 Theory
+                        </button>
+
+                        <button
+                            type="button"
+                            class="type-btn lab-option"
+                            data-type="Lab"
+                        >
+                            🧪 Lab
+                        </button>
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        id="classType"
+                        value="Theory"
+                    >
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="submitBtn"
+                    >
+                        <span>＋</span>
+                        Add Class
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="secondary-btn hidden"
+                        id="cancelEditBtn"
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div id="message"></div>
+
+        </section>
+
+
+        <!-- TABLE -->
+
+        <section class="card">
+
+            <div class="table-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DATABASE RECORDS
+                    </span>
+
+                    <h2>All Classes</h2>
+
+                    <p>
+                        Manage your timetable entries below.
+                    </p>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <select id="filterDay">
+
+                        <option value="All">
+                            All Days
+                        </option>
+
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Day</th>
+                            <th>Subject</th>
+                            <th>Teacher</th>
+                            <th>Room</th>
+                            <th>Type</th>
+                            <th>Time</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="timetableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- TIMETABLE VIEW PAGE -->
+    <!-- ========================= -->
+
+    <section id="viewPage" class="hidden">
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    COLLEGE SCHEDULE
+                </span>
+
+                <h2>Weekly Timetable</h2>
+
+                <p>
+                    A complete visual view of your college timetable.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <section class="card timetable-card">
+
+            <div class="timetable-heading">
+
+                <div>
+                    <h2>Class Schedule</h2>
+                    <p>Monday to Saturday</p>
+                </div>
+
+                <button
+                    class="secondary-btn"
+                    id="refreshViewBtn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="weekly-wrapper">
+
+                <table class="weekly-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="weeklyBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- TEACHER / SUBJECT LIST -->
+
+        <section class="card teacher-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <span class="eyebrow">
+                        FACULTY INFORMATION
+                    </span>
+
+                    <h2>Teacher & Subject Directory</h2>
+
+                    <p>
+                        Teachers assigned to each subject.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="teacher-grid"
+                id="teacherGrid"
+            >
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Timetable Management System
+        <span>•</span>
+        College Mini Project
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
